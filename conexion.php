@@ -26,44 +26,33 @@ $noUnidad = isset($_POST ['noUnidad']) ? $_POST ['noUnidad']: '';
 $placas = isset($_POST ['placas']) ? $_POST ['placas']: '';
 $modelo = isset($_POST ['modelo']) ? $_POST ['modelo']: '';
 $marca = isset($_POST ['marca']) ? $_POST ['marca']: '';
-//$correo2 = '';
+$noUnidad2 = '';
 
 
 $con= new SQLite3('tuvsaUnidades.db');
 
 
-
-
- /* $cs = $con -> query ("SELECT * FROM login WHERE correo='$correo'");
+$cs = $con -> query ("SELECT noUnidad FROM registro WHERE noUnidad='$noUnidad'");
 
 while ($result=$cs -> fetchArray()){
-    $correo2=$result['correo'];
+    $noUnidad2=$result['noUnidad'];
 }
 
-if ($correo2 == $correo) {
-    
+if ($noUnidad2 == $noUnidad) {
     echo '
     <script>
         Swal.fire({
             icon: "error",
-        title: "Correo Existente",
+        title: "Unidad ya registrada",
       }).then((result) => {
-   window.location="registrar.html"
+   window.location="registro.html"
 
       })</script>';
 
-    #echo '<script>alert("correo existente")</script>';
-    #echo '<script> window.location=("registrar.html")</script>';
-
-}else{ */
+}else{
 
 
     $cs2 = $con -> query ("INSERT INTO registro (noUnidad, placas, modelo, marca) VALUES ('$noUnidad','$placas','$modelo', '$marca')");
-   #echo '<script>alert("correo registrado")</script>';
-
-
-    #echo '<script> window.location=("login.html")</script>';
-
     echo '
     <script>
         Swal.fire({
@@ -73,7 +62,7 @@ if ($correo2 == $correo) {
         window.location="registro.html"
      
            })</script>';
+}
 
 
-
-?>
+?> 
