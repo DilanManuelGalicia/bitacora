@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@9.0.0/dist/dbr.js"></script>
+    <title>Scan</title>
+</head>
+<body>
+    <div class="container-fliud">
+        <div class="row">
+            <div class="col-md-8 mx-auto" style="text-align: center;">
+                <div class="my-5 mx-auto">
+                        <img src="img/LOGO_TUVSA_DRAGON.svg" alt="logo" class="img-fluid" width="200px">
+                        <h1 class="my-4">Escanea el codigo de barras</h1>
+                    <br>
+                    <div class="card mx-auto bg-light" style="width: 22rem; text-align: left;">
+                        <div class="card-body">
+                            <script>
+                                Dynamsoft.DBR.BarcodeReader.license = "DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ==";
+                                let scanner = null;
+                                (async()=>{
+                                    scanner = await Dynamsoft.DBR.BarcodeScanner.createInstance();
+                                    scanner.onFrameRead = results => {console.log(results);};
+                                    scanner.onUnduplicatedRead = (txt, result) => {};
+                                    await scanner.show();
+                                })();
+                            </script>
+                        </div>
+                    </div>
+                    <div class="card mx-auto bg-light" style="width: 22rem; text-align: left;">
+                        <div class="card-body">
+                            <form action="respuesta.php" method="post">
+                                <div class="form-outline mb-4">
+                                    <label class="form-label">Numero de Unidad</label>
+                                    <input type="text" class="form-control" name="noUnidad"
+                                    disabled/>
+                                </div>
+                                <div class="form-outline mb-3">
+                                    <label class="form-label">Placas</label>
+                                    <input type="text" class="form-control" name="placas"
+                                    disabled />
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label">Modelo</label>
+                                    <input type="text" class="form-control" name="modelo"
+                                    disabled/>
+                                </div>
+                                <div class="form-outline mb-3">
+                                    <label class="form-label">Marca</label>
+                                    <input type="text" class="form-control" name="marca"
+                                    disabled />
+                                </div>
+                                <div class="form-outline mb-3">
+                                    <label class="form-label">Hora</label>
+                                    <input type="text" class="form-control" name="hora"
+                                    disabled />
+                                </div>
+                                <div class="text-center text-lg-start mt-4 pt-2">
+                                    <button type="submit" class="btn btn-success btn-lg form-control"
+                                    style="padding-left: 2.5rem; padding-right: 2.5rem;">listo</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.6.3.min.js"></script>
+</body>
+</html>
